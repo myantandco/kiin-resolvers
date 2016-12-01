@@ -8,7 +8,8 @@
  */
 
 module.exports = {
-    var code = {
+
+    code: {
             __parseLiteral(ast) {
                 return ast.value;
             },
@@ -20,7 +21,7 @@ module.exports = {
             }
         },
 
-     var token = {
+     token: {
             __parseLiteral(ast) {
                 return ast.value;
             },
@@ -32,7 +33,7 @@ module.exports = {
             }
         },
 
-     var email: {
+     email: {
             __parseLiteral(ast) {
                 if (ast.kind === Kind.STRING) {
                     if (validator.isEmail(ast.value)) {
@@ -49,7 +50,7 @@ module.exports = {
             }
         },
 
-     var jwt = {
+     jwt: {
             __parseLiteral(ast) {
                 if (ast.kind === Kind.STRING) {
                     let validator = new JSONSchemaValidator.Validator();
@@ -69,7 +70,7 @@ module.exports = {
             }
         },
 
-    var password = {
+    password: {
             __parseLiteral(ast) {
                 if (ast.value.length > 8) {
                     return ast.value;
