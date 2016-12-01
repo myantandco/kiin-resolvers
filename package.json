@@ -1,0 +1,22 @@
+{
+  "name": "kiin-resolvers",
+  "version": "0.0.1",
+  "description": "kiin resolver module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myantandco/kiin-resolvers.git"
+  },
+  "keywords": [
+    "kiin-resolvers"
+  ],
+  "author": "Nishant Bhasin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myantandco/kiin-resolvers/issues"
+  },
+  "homepage": "https://github.com/myantandco/kiin-resolvers#readme"
+}
