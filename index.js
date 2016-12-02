@@ -3,7 +3,6 @@
 var Kind = require('graphql/language');
 var Validator = require('validator');
 var checkUrl = require('valid_url');
-var JSONSchemaValidator = require('jsonschema');
 /**
  * Adds commas to a number
  * @param {number} number
@@ -73,12 +72,7 @@ module.exports = {
     jwt: {
         __parseLiteral(ast) {
             if (ast.kind === Kind.STRING) {
-                let validator = new JSONSchemaValidator.Validator();
-
-                // validate payload with schema
-                if (validator.validate(jwt.verify(ast, config.jwt.secret), jwtPayloadSchema).valid) {
                     return ast.value;
-                }
             }
             return null;
         },
