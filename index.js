@@ -1,11 +1,16 @@
 'use strict';
 
+var Kind = require('graphql/language');
+var Validator = require('validator');
+var checkUrl = require('valid_url');
+var JSONSchemaValidator = require('jsonschema');
 /**
  * Adds commas to a number
  * @param {number} number
  * @param {string} locale
  * @return {string}
  */
+
 
 module.exports = {
 
