@@ -1,6 +1,6 @@
 'use strict';
 
-var Kind = require('graphql/language');
+var { Kind } = require('graphql/language');
 var Validator = require('validator');
 var checkUrl = require('valid_url');
 /**
