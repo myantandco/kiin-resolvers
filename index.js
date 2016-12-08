@@ -40,7 +40,7 @@ module.exports = {
     email: {
         __parseLiteral(ast) {
             if (ast.kind === Kind.STRING) {
-                if (validator.isEmail(ast.value)) {
+                if (Validator.isEmail(ast.value)) {
                     return ast.value;
                 }
             }
