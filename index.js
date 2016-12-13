@@ -41,7 +41,7 @@ module.exports = {
         __parseLiteral(ast) {
             if (ast.kind === Kind.STRING) {
                 if (Validator.isEmail(ast.value)) {
-                    return ast.value;
+                    return ast.value.toLowerCase();
                 }
             }
             return null;
