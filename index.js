@@ -47,10 +47,10 @@ module.exports = {
             return null;
         },
         __parseValue(value) {
-            return value;
+            return value.toLowerCase();
         },
         __serialize(value) {
-            return value;
+            return value.toLowerCase();
         }
     },
 
