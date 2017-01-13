@@ -12,7 +12,41 @@ var checkUrl = require('valid_url');
 
 
 module.exports = {
-
+    
+    uint: {
+        __parseLiteral(ast) {
+            if (ast.kind === Kind.INTEGER) {
+                if (ast.value >= 0) {
+                    return ast.value;
+                }
+            }
+            return null;
+        },
+        __parseValue(value) {
+            return value;
+        },
+        __serialize(value) {
+            return value;
+        }
+    },
+    
+    pageSize: {
+        __parseLiteral(ast) {
+            if (ast.kind === Kind.INTEGER) {
+                if (ast.value >= 0 && ast.value <= 100) {
+                    return ast.value;
+                }
+            }
+            return null;
+        },
+        __parseValue(value) {
+            return value;
+        },
+        __serialize(value) {
+            return value;
+        }
+    },
+    
     code: {
         __parseLiteral(ast) {
             return ast.value;
