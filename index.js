@@ -15,7 +15,7 @@ module.exports = {
     
     uint: {
         __parseLiteral(ast) {
-            if (ast.kind === Kind.INTEGER) {
+            if (ast.kind === Kind.INT) {
                 if (ast.value >= 0) {
                     return ast.value;
                 }
