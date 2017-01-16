@@ -32,7 +32,7 @@ module.exports = {
     
     pageSize: {
         __parseLiteral(ast) {
-            if (ast.kind === Kind.INTEGER) {
+            if (ast.kind === Kind.INT) {
                 if (ast.value >= 0 && ast.value <= 100) {
                     return ast.value;
                 }
