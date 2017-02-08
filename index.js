@@ -12,6 +12,20 @@ var checkUrl = require('valid_url');
 
 
 module.exports = {
+    date: {
+        __parseLiteral(ast) {
+            if (ast.kind === Kind.INT) {
+                return parseInt(ast.value, 10)
+            }
+            return null;
+        },
+        __parseValue(value) {
+            return new Date(value);
+        },
+        __serialize(value) {
+            return value.getTime();
+        }
+    },
     
     uint: {
         __parseLiteral(ast) {
