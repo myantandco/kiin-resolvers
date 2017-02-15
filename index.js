@@ -15,15 +15,15 @@ module.exports = {
     date: {
         __parseLiteral(ast) {
             if (ast.kind === Kind.INT) {
-                return parseInt(ast.value, 10)
+                return ast.value;
             }
             return null;
         },
         __parseValue(value) {
-            return new Date(value);
+            return value;
         },
         __serialize(value) {
-            return value.getTime();
+            return value;
         }
     },
     
