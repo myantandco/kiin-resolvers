@@ -14,13 +14,13 @@ var checkUrl = require('valid_url');
 module.exports = {
     date: {
         __parseLiteral(ast) {
-            if (ast.kind === Kind.INT) {
+            if (ast.kind === Kind.STRING) {
                 return ast.value;
             }
             return null;
         },
         __parseValue(value) {
-            return value;
+            return new Date(value);
         },
         __serialize(value) {
             return value;
