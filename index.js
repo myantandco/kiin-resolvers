@@ -15,15 +15,16 @@ module.exports = {
     date: {
         __parseLiteral(ast) {
             if (ast.kind === Kind.STRING) {
-                return ast.value;
+                return new Date(ast.value)
             }
             return null;
         },
         __parseValue(value) {
-            return new Date(value);
+            return new Date(value); // value from the client            
+
         },
         __serialize(value) {
-            return value;
+            return value.toISOString(); // value sent to the client
         }
     },
     
