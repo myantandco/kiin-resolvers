@@ -7,10 +7,11 @@
     "test": "test index.js"
   },
   "dependencies": {
-    "jsonschema": "latest",
     "graphql": "^0.7.2",
     "graphql-tools": "^0.8.1",
-    "valid_url": "^1.1.1"
+    "jsonschema": "latest",
+    "valid_url": "^1.1.1",
+    "validator": "^7.0.0"
   },
   "repository": {
     "type": "git",
