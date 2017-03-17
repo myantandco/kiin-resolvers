@@ -9,9 +9,6 @@
   "dependencies": {
     "jsonschema": "latest",
     "graphql": "^0.7.2",
-    "graphql-relay": "^0.4.3",
-    "graphql-sequelize": "^4.0.0",
-    "graphql-server-express": "^0.4.3",
     "graphql-tools": "^0.8.1",
     "valid_url": "^1.1.1"
   },
