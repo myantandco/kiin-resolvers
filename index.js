@@ -146,5 +146,21 @@ module.exports = {
         __serialize(value) {
             return value
         }
+    },
+
+    calendarDate: {
+        __parseLiteral(ast) {
+            if (ast.kind === Kind.STRING) {
+                return new Date(ast.value)
+            }
+            return null;
+        },
+        __parseValue(value) {
+            return new Date(value); // value from the client
+        },
+        __serialize(value) {
+            var date = new Date(value);
+            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(); // value sent to the client
+        }
     }
 };
