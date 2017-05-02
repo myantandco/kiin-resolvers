@@ -151,7 +151,7 @@ module.exports = {
     calendarDate: {
         __parseLiteral(ast) {
             if (ast.kind === Kind.STRING) {
-                return moment(ast, 'YYYY-MM-DD', true)
+                return moment(ast.value, 'YYYY-MM-DD', true)
             }
             return null;
         },
