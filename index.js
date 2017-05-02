@@ -3,13 +3,13 @@
 var { Kind } = require('graphql/language');
 var Validator = require('validator');
 var checkUrl = require('valid_url');
+var moment = require('moment');
 /**
  * Adds commas to a number
  * @param {number} number
  * @param {string} locale
  * @return {string}
  */
-
 
 module.exports = {
     date: {
@@ -151,16 +151,15 @@ module.exports = {
     calendarDate: {
         __parseLiteral(ast) {
             if (ast.kind === Kind.STRING) {
-                return new Date(ast.value)
+                return moment(ast, 'YYYY-MM-DD', true)
             }
             return null;
         },
         __parseValue(value) {
-            return new Date(value); // value from the client
+            return moment(value, 'YYYY-MM-DD', true) // value from the client
         },
         __serialize(value) {
-            var date = new Date(value);
-            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(); // value sent to the client
+            return moment(value).format('YYYY-MM-DD') // value sent to the client
         }
     }
 };
