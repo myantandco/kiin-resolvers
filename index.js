@@ -161,5 +161,23 @@ module.exports = {
         __serialize(value) {
             return moment(value).format('YYYY-MM-DD') // value sent to the client
         }
+    },
+    multiFormatDate: {
+        __parseLiteral(ast) {
+            if (ast.kind === Kind.STRING) {
+                return new Date(ast.value).getTime()
+            }
+            if (ast.kind === Kind.INT) {
+                return ast.value
+            }
+            return null;
+        },
+        __parseValue(value) {
+            return new Date(value); // value from the client
+
+        },
+        __serialize(value) {
+            return value.toISOString(); // value sent to the client
+        }
     }
 };
