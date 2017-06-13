@@ -13,23 +13,27 @@ var moment = require('moment');
 
 module.exports = {
     date: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.STRING) {
                 return new Date(ast.value)
             }
             return null;
         },
+        // parsing the request value from the client when the client sends the value as a variable
         __parseValue(value) {
-            return new Date(value); // value from the client            
+            return new Date(value); 
 
         },
+        // value sent back to the client in the response
         __serialize(value) {
-            return value.toISOString(); // value sent to the client
+            return value.toISOString(); 
         }
     },
     
     uint: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.INT) {
                 if (ast.value >= 0) {
                     return ast.value;
@@ -46,7 +50,8 @@ module.exports = {
     },
     
     pageSize: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.INT) {
                 if (ast.value >= 0 && ast.value <= 100) {
                     return ast.value;
@@ -63,7 +68,8 @@ module.exports = {
     },
     
     code: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             return ast.value;
         },
         __parseValue(value) {
@@ -75,7 +81,8 @@ module.exports = {
     },
 
     token: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             return ast.value;
         },
         __parseValue(value) {
@@ -87,7 +94,8 @@ module.exports = {
     },
 
     email: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.STRING) {
                 if (Validator.isEmail(ast.value)) {
                     return ast.value.toLowerCase();
@@ -104,7 +112,8 @@ module.exports = {
     },
 
     url: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (checkUrl(ast.value)) {
                 return ast.value;
             }
@@ -119,7 +128,8 @@ module.exports = {
     },
 
     jwt: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.STRING) {
                     return ast.value;
             }
@@ -134,7 +144,8 @@ module.exports = {
     },
 
     password: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.value.length > 8) {
                 return ast.value;
             }
@@ -149,21 +160,25 @@ module.exports = {
     },
 
     calendarDate: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.STRING) {
                 return moment(ast.value, 'YYYY-MM-DD', true)
             }
             return null;
         },
+        // parsing the request value from the client when the client sends the value as a variable
         __parseValue(value) {
-            return moment(value, 'YYYY-MM-DD', true) // value from the client
+            return moment(value, 'YYYY-MM-DD', true) 
         },
+        // value sent back to the client in the response
         __serialize(value) {
-            return moment(value).format('YYYY-MM-DD') // value sent to the client
+            return moment(value).format('YYYY-MM-DD') 
         }
     },
     multiFormatDate: {
-        __parseLiteral(ast) {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) { 
             if (ast.kind === Kind.STRING) {
                 return new Date(ast.value).getTime()
             }
@@ -172,12 +187,13 @@ module.exports = {
             }
             return null;
         },
+        // parsing the request value from the client when the client sends the value as a variable
         __parseValue(value) {
-            return new Date(value); // value from the client
-
+            return typeof value == 'string' ? new Date(value).getTime() : value
         },
-        __serialize(value) {
-            return value.toISOString(); // value sent to the client
+        // value sent back to the client in the response
+        __serialize(value) { 
+            return value.toISOString(); 
         }
     }
 };
