@@ -183,7 +183,7 @@ module.exports = {
                 return new Date(ast.value).getTime()
             }
             if (ast.kind === Kind.INT) {
-                return ast.value
+                return parseInt(ast.value)
             }
             return null;
         },
