@@ -4,6 +4,8 @@ var { Kind } = require('graphql/language');
 var Validator = require('validator');
 var checkUrl = require('valid_url');
 var moment = require('moment');
+var semverRegex = require('semver-regex');
+
 /**
  * Adds commas to a number
  * @param {number} number
@@ -194,6 +196,20 @@ module.exports = {
         // value sent back to the client in the response
         __serialize(value) { 
             return value.toISOString(); 
+        }
+    },
+    semanticVersion: {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) {
+            return semverRegex().test(ast.value) ? ast.value : null
+        },
+        // parsing the request value from the client when the client sends the value as a variable
+        __parseValue(value) {
+            return semverRegex().test(value) ? value : null
+        },
+        // value sent back to the client in the response
+        __serialize(value) {
+            return value
         }
     }
 };
