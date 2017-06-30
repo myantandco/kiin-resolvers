@@ -7,6 +7,8 @@ var moment = require('moment');
 
 var semverRegex = /^v?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?$/; // modified from semver-regex to match exactly
 
+var timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/ // HH:MM:SS or HH:MM
+
 /**
  * Adds commas to a number
  * @param {number} number
@@ -207,6 +209,20 @@ module.exports = {
         // parsing the request value from the client when the client sends the value as a variable
         __parseValue(value) {
             return semverRegex.test(value) ? value : null
+        },
+        // value sent back to the client in the response
+        __serialize(value) {
+            return value
+        }
+    },
+    time: {
+        // parsing the request value from the client when the client sends the value embedded in the request body
+        __parseLiteral(ast) {
+            return timeRegex.test(ast.value) ? ast.value : null
+        },
+        // parsing the request value from the client when the client sends the value as a variable
+        __parseValue(value) {
+            return timeRegex.test(value) ? value : null
         },
         // value sent back to the client in the response
         __serialize(value) {
