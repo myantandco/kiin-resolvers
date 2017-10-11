@@ -28,11 +28,10 @@ module.exports = {
         // parsing the request value from the client when the client sends the value as a variable
         __parseValue(value) {
             return new Date(value); 
-
         },
         // value sent back to the client in the response
         __serialize(value) {
-            return value.toISOString(); 
+            return new Date(value).toISOString(); 
         }
     },
     
