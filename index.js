@@ -8,6 +8,7 @@ var moment = require('moment');
 var semverRegex = /^v?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?$/; // modified from semver-regex to match exactly
 
 var timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/ // HH:MM:SS or HH:MM
+var dateRegex = /^(19|20)\d{2}-(0\d{1}|1[0-2])-([0-2]\d{1}|3[0-1])$/ // YYYY-MM-DD
 
 /**
  * Adds commas to a number
@@ -177,6 +178,9 @@ module.exports = {
         },
         // value sent back to the client in the response
         __serialize(value) {
+            if (typeof value === 'string' && dateRegex.test(value)) {
+                return value
+            }
             return moment(value).format('YYYY-MM-DD') 
         }
     },
