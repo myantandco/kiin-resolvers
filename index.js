@@ -54,6 +54,21 @@ module.exports = {
         }
     },
     
+    timestamp: {
+        __parseLiteral(ast) { 
+            if (ast.kind === Kind.FLOAT) {
+                return ast.value;
+            }
+            return null;
+        },
+        __parseValue(value) {
+            return value;
+        },
+        __serialize(value) {
+            return value;
+        }
+    },
+    
     pageSize: {
         // parsing the request value from the client when the client sends the value embedded in the request body
         __parseLiteral(ast) { 
