@@ -41,7 +41,7 @@ module.exports = {
         __parseLiteral(ast) { 
             if (ast.kind === Kind.INT) {
                 if (ast.value >= 0) {
-                    return ast.value;
+                    return parseInt(ast.value);
                 }
             }
             return null;
@@ -57,7 +57,7 @@ module.exports = {
     timestamp: {
         __parseLiteral(ast) { 
             if (ast.kind === Kind.FLOAT) {
-                return ast.value;
+                return parseFloat(ast.value);
             }
             return null;
         },
@@ -74,23 +74,10 @@ module.exports = {
         __parseLiteral(ast) { 
             if (ast.kind === Kind.INT) {
                 if (ast.value >= 0 && ast.value <= 100) {
-                    return ast.value;
+                    return parseInt(ast.value);
                 }
             }
             return null;
-        },
-        __parseValue(value) {
-            return value;
-        },
-        __serialize(value) {
-            return value;
-        }
-    },
-    
-    code: {
-        // parsing the request value from the client when the client sends the value embedded in the request body
-        __parseLiteral(ast) { 
-            return ast.value;
         },
         __parseValue(value) {
             return value;
@@ -151,7 +138,7 @@ module.exports = {
         // parsing the request value from the client when the client sends the value embedded in the request body
         __parseLiteral(ast) { 
             if (ast.kind === Kind.STRING) {
-                    return ast.value;
+                return ast.value;
             }
             return null;
         },
