@@ -14,7 +14,7 @@ var dateRegex = /^(19|20)\d{2}-(0\d{1}|1[0-2])-([0-2]\d{1}|3[0-1])$/ // YYYY-MM-
 function identity(x) { return x }
 
 
-const CalendarDate = GraphQLScalarType({
+const CalendarDate = new GraphQLScalarType({
     name: 'CalendarDate',
     parseLiteral(ast) {
         if (ast.kind !== Kind.STRING) {
