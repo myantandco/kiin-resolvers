@@ -243,7 +243,7 @@ const Uri = new GraphQLScalarType({
     serialize: identity
 })
 
-export default {
+module.exports = {
     CalendarDate,
     Date,
     Email,
