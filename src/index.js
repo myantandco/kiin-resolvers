@@ -1,6 +1,6 @@
 'use strict';
 
-import { GraphQLScalarType } from 'graphql';
+var { GraphQLScalarType } = require('graphql');
 var { Kind } = require('graphql/language');
 var Validator = require('validator');
 var checkUrl = require('valid_url');
