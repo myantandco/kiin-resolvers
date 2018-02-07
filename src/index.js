@@ -33,7 +33,7 @@ const CalendarDate = new GraphQLScalarType({
     }
 })
 
-const Date = new GraphQLScalarType({
+const _Date = new GraphQLScalarType({
     name: 'Date',
     parseLiteral(ast) {
         if (ast.kind !== Kind.STRING) {
@@ -245,7 +245,7 @@ const Uri = new GraphQLScalarType({
 
 module.exports = {
     CalendarDate,
-    Date,
+    Date: _Date,
     Email,
     Jwt,
     MultiFormatDate,
