@@ -10,7 +10,7 @@
     "graphql": "^0.12.3",
     "moment": "^2.18.1",
     "semver-regex": "^1.0.0",
-    "valid_url": "^1.1.1",
+    "valid-url": "^1.0.9",
     "validator": "^7.0.0"
   },
   "repository": {

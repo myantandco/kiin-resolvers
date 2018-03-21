@@ -3,7 +3,7 @@
 var { GraphQLScalarType } = require('graphql');
 var { Kind } = require('graphql/language');
 var Validator = require('validator');
-var checkUrl = require('valid_url');
+var validUrl = require('valid-url');
 var moment = require('moment');
 
 var semverRegex = /^v?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?$/; // modified from semver-regex to match exactly
@@ -226,7 +226,7 @@ const Uri = new GraphQLScalarType({
         if (ast.kind !== Kind.STRING) {
             throw new Error()
         }
-        if (!checkUrl(ast.value)) {
+        if (!validUrl.isUri(ast.value)){
             throw new Error()
         }
         return ast.value
@@ -235,7 +235,30 @@ const Uri = new GraphQLScalarType({
         if (typeof value !== "string") {
             throw new Error()
         }
-        if (!checkUrl(value)) {
+        if (!validUrl.isUri(value)){
+            throw new Error()
+        }
+        return value
+    },
+    serialize: identity
+})
+
+const WebUri = new GraphQLScalarType({
+    name: 'WebUri',
+    parseLiteral(ast) {
+        if (ast.kind !== Kind.STRING) {
+            throw new Error()
+        }
+        if (!validUrl.isWebUri(ast.value)){
+            throw new Error()
+        }
+        return ast.value
+    },
+    parseValue(value) {
+        if (typeof value !== "string") {
+            throw new Error()
+        }
+        if (!validUrl.isWebUri(value)){
             throw new Error()
         }
         return value
